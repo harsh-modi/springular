@@ -1,3 +1,5 @@
-group 'infinity'
-version '1.0-SNAPSHOT'
+allprojects {
+    group 'infinity'
+    version '1.0-SNAPSHOT'
+}
 
