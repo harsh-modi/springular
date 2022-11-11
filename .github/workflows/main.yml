@@ -2,7 +2,7 @@ name: BuildAndDeploy
 on:
   workflow_dispatch:
 env:
-  IMAGE_TAG: echo "fluxergy-frontend-dev-$GITHUB_RUN_NUMBER"
+  IMAGE_TAG: fluxergy-frontend-dev-${{GITHUB_RUN_NUMBER}}
 jobs:
   build:
     name: Build Image
