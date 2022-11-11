@@ -1,6 +1,8 @@
 name: BuildAndDeploy
 on:
   workflow_dispatch:
+env:
+  ENV_NAME: fluxergy-frontend
 jobs:
   build:
     name: Build Image
@@ -8,7 +10,11 @@ jobs:
     steps:
       - name: Set Env
         id: vars
-        run: echo "docker_tag=$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}" >> $GITHUB_OUTPUT
+        run: | 
+          echo "image_tag=${ENV_NAME}-${env.GITHUB_RUN_NUMBER}-$(echo ${GITHUB_SHA} | cut -c1-8)"
+          echo "docker_tag=$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}" >> $GITHUB_OUTPUT
       - name: print
         run: |
           echo "${{ steps.vars.outputs.docker_tag }}"
+          echo "${{ steps.vars.outputs.image_tag }}"
+          
