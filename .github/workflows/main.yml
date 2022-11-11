@@ -5,16 +5,12 @@ env:
   ENV_NAME: fluxergy-frontend
 jobs:
   build:
+    environment: dev
     name: Build Image
     runs-on: ubuntu-latest
     steps:
       - name: Set Env
         id: vars
         run: | 
-          echo "image_tag=${ENV_NAME}-${GITHUB_RUN_NUMBER}-$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
-          echo "docker_tag=$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}" >> $GITHUB_OUTPUT
-      - name: print
-        run: |
-          echo "${{ steps.vars.outputs.docker_tag }}"
-          echo "${{ steps.vars.outputs.image_tag }}"
+          echo "${{ secrets.TEST }}"
           
