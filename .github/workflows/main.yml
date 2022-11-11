@@ -2,10 +2,7 @@ name: BuildAndDeploy
 on:
   workflow_dispatch:
 env:
-  ENV_NAME: fluxergy-frontend-dev
-  BUILD_NUMBER: ${{github.run_number}}
-  COMMIT_SHA: ${{github.sha}}
-  IMAGE_TAG: ${{ENV_NAME}}-${{BUILD_NUMBER}}-${{COMMIT_SHA}}
+  IMAGE_TAG: fluxergy-frontend-dev-${{github.run_number}}-${{github.sha::8}}
 jobs:
   build:
     name: Build Image
