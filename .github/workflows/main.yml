@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set Env
-        run: echo "IMAGE_TAG=fluxergy-frontend-${env.GITHUB_RUN_NUMBER}-$(echo ${GITHUB_SHA::8})" >> $GITHUB_ENV
+        id: vars
+        run: echo "docker_tag=$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}" >> $GITHUB_OUTPUT
       - name: print
         run: |
-          echo "$IMAGE_TAG"
+          echo "${{ steps.vars.outputs.docker_tag }}"
