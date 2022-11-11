@@ -4,7 +4,7 @@ on:
 env:
   ENV_NAME: fluxergy-frontend-dev
   BUILD_NUMBER: ${{github.run_number}}
-  COMMIT_SHA: ${{GITHUB_SHA::8}}
+  COMMIT_SHA: ${{github.sha::8}}
   IMAGE_TAG: ${ENV_NAME}-${BUILD_NUMBER}-${COMMIT_SHA}
 jobs:
   build:
